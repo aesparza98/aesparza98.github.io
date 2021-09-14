@@ -1,9 +1,45 @@
+/*
+Colorblind safe color palette from colorbrewer2.org.
+#e66101 orange
+#fdb863b peach
+#f7f7f7 white
+#b2abd2 lavender
+#5e3c99 purple
+*/
+#header{
+  background-color: #f7f7f7;
+}
+h1 {
+  color: #5e3c99;
+  padding: 5px;
+  margin: 0;
+}
+#body-container {
+  background-color: #f7f7f7;
+  max-width: 1000px;
+  margin:auto;
+  height: 100vh;
+  border: 2px solid #b2abd2;
+  border-radius: 25px;
+  overflow: hidden;
+}
 body {
   background-color: #f7f7f7;
   color:#e66101;
   text-align: center;
+  margin:0;
 }
 
-h1 {
-  color: #5e3c99
+#profile-picture {
+  float:left;
+}
+#welcome-text{
+  padding-top: 25px;
+  font-size: 25px;
+}
+#research-interests{
+  text-align: left;
+  font-size: 25px;
+  position: relative;
+  left: 50px;
 }
