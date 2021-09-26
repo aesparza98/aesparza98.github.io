@@ -5,7 +5,10 @@ Colorblind safe color palette from colorbrewer2.org.
 #f7f7f7 white
 #b2abd2 lavender
 #5e3c99 purple
+
+<!--Color palette used as the values for text and borders within the website--> 
 */
+
 #header{
   background-color: #f7f7f7;
 }
@@ -14,6 +17,14 @@ h1 {
   padding: 5px;
   margin: 0;
 }
+
+<!--In this parameter the background color is set to white, 
+the words composing the heading are set to the highest value posible with "H1", 
+the color assigned to the font is assigned through (h1{color:#5e3c99) which stablishes a purple color to the text,
+padding creates the space between its content and its border, in this case its set to 5px.
+Lastly margin is defines the space around an HTML element in this case the spacing is set to 0-->
+
+
 #body-container {
   background-color: #f7f7f7;
   max-width: 1000px;
@@ -23,6 +34,17 @@ h1 {
   border-radius: 25px;
   overflow: hidden;
 }
+
+<!--In this section of the code background color is set to white,
+max-width is use to set to 1000 px so there is not a larger affecting the width of the body;
+the margin set to auto makes the elemnts to center and leave an equal amount of space to its sides;
+the height set to 100vh indicates that 100% of the viewport is being use, 
+the vieport refers to the screen used to display the total protion from the screen.
+the border assiged to 2px indicates that the line will have a size of 2 pixels, solid means it won't have any spaces through the line and the hex code (#b2abd2) shows that its color is lavender. 
+the border-radius set o 25 pixels shows that the corners are rounded by this amount in a circular end.
+Lastly the overflow: hidden action makes things like scrolbars to not show-->
+
+
 body {
   background-color: #f7f7f7;
   color:#e66101;
@@ -30,16 +52,34 @@ body {
   margin:0;
 }
 
+<!--Here the background-color action shows that the backrground color is set to white,
+color for body refers to the color of the font which in this case is set to orange. 
+The text-align feature set to center, indicates that the inner content will me place in the middle of the block aligment.
+The margin is doing the same action was doing previously which is defining the space around the HTML element, though being 0 in this case
+-->
+
+
 #profile-picture {
   float:left;
 }
+<!-- image floating to the left indicates that the text will wrap around the image located in the top left corner of the page
+-->
+
 #welcome-text{
   padding-top: 25px;
   font-size: 25px;
 }
+
+<!-- In this case similar as before padding is creating the space between the text and margin, creating a space of 25px between this two. 
+The font-size shows that the welcome text will have a size of 25 pixels
+-->
+
 #research-interests{
   text-align: left;
   font-size: 25px;
   position: relative;
   left: 50px;
 }
+
+<!-- The first two parameters have previously been explained, in the case of the position set to relative inidcates that the element will be in the area where is already stablished without affecting the layout around it. 
+Left: 50 pixels makes space between the left border and the content-->
