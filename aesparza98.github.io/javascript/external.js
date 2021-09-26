@@ -36,7 +36,7 @@ document.writeln("<br>");
 document.writeln(x += 33);
 */
 
-document.writeln("<button onclick='condition()'>Conditional Test</button>")
+/*document.writeln("<button onclick='condition()'>Conditional Test</button>")
 function condition()
 {
  x = confirm("Are you sure you want to proceed?");
@@ -48,4 +48,11 @@ function condition()
  {
  document.writeln("You chose Cancel!");
  }
+}*/
+
+arr = ["Joe","April","Mark","Sara"];
+
+for (var i=0; i < arr.length; i++)
+{
+ document.writeln(arr[i],"<br>");
 }
