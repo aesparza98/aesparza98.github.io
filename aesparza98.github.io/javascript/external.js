@@ -50,9 +50,9 @@ function condition()
  }
 }*/
 
-arr = ["Joe","April","Mark","Sara"];
+/*arr = ["Joe","April","Mark","Sara"];
 
 for (var i=0; i < arr.length; i++)
 {
  document.writeln(arr[i],"<br>");
-}
+}*/
