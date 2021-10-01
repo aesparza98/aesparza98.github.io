@@ -1,18 +1,23 @@
-<!doctype html>
+<!Doctype html>
 <html>
 <head>
   <title>Alvaro Esparza</title>
   <!--All styling for this HTML document are contain in this external css
   file-->
   <link rel="stylesheet" type="text/css" href="css/main_style.css">
+  <script src="javascript/Lab3.js" ></script>
 </head>
 <body>
   <div id="body-container">
     <div id="header">
-      <h1> Hello, Welcome to my webpage, <script src="javascript/Lab3.js"></script></h1>
+      <h1> Hello, Welcome to my webpage,
+        <script>
+              document.write(welcome());
+        </script>
+      </h1>
     </div>
   <div id="profile-picture">
-    <img src=images\profile-picture.jpg.jpg width=200px height=125px/>
+    <img src=images\profile-picture.jpg.jpg width=250px height=250px/>
   </div>
   <div id="welcome-text">
     My name is Alvaro S. Esparza<br>
