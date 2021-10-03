@@ -27,9 +27,9 @@ Lastly margin is defines the space around an HTML element in this case the spaci
 
 #body-container {
   background-color: #f7f7f7;
-  max-width: 1000px;
+  max-width: auto;
   margin:auto;
-  height: 100vh;
+  height: auto;
   border: 2px solid #b2abd2;
   border-radius: 25px;
   overflow: hidden;
@@ -84,8 +84,14 @@ The font-size shows that the welcome text will have a size of 25 pixels*/
 Left: 50 pixels makes space between the left border and the content*/
 
 #copyright {
-position: absolute;
+position: static;
 width: 1000px;
 text-align: center;
 bottom: 20px;
+}
+
+#webmap-reviews{
+  text-align: left;
+  font-size: 25px;
+  position: relative;
 }

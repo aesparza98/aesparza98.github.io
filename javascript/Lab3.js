@@ -27,3 +27,19 @@ function webmap_table()
   }
   document.write("</table>");
 }
+
+var webmaps =
+ [
+   ["Urban Planning",
+   "https://www.nationalgeographic.org/article/urban-planning/",
+    "Explanation of what Urban Plannig is and its effect in society"
+    ],
+   ["Urban Heat Island Effect",
+   "https://www.epa.gov/heatislands",
+    "Definition and issues regarding Urban Heat Island"
+    ],
+    ["Transportation and Affordable Housing",
+    "https://www.maulfoster.com/news/using-gis-to-identify-affordable-housing-near-transit-stations/",
+    "Relation between affordable housing and Transportation"
+   ]
+ ];
