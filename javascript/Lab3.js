@@ -13,13 +13,20 @@ message = "<h1>Hello, welcome to my webpage," + user_name + "!</h1>"
 
 return message
 }
+
+
 function webmap_table()
 {
-  document.write("<table width=100%>");
+  document.write("<table width=90%>");
   for (var row=0; row < webmaps.length; row++)
   {
     document.write("<tr>");
     for (var column=0; column < webmaps[0].length; column++)
+    //if (row==0) {
+      //            row.style.fontcolor ('black');
+      //} else {
+        //          row.style.fontcolor ('blue');
+      //}
       {
         document.write("<td>"+ webmaps[row][column] + "</td>");
       }
@@ -27,6 +34,7 @@ function webmap_table()
   }
   document.write("</table>");
 }
+
 
 var webmaps =
  [
@@ -43,3 +51,11 @@ var webmaps =
     "Relation between affordable housing and Transportation"
    ]
  ];
+
+function calculate()
+   {
+     var length =  document.getElementById("length").value;
+     var width =  document.getElementById("width").value;
+     var area = length * width;
+    document.getElementById("area").value = area;
+   }

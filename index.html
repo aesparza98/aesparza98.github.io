@@ -9,6 +9,12 @@
 </head>
 <body>
   <div id="body-container">
+<br>
+<!--  <form name="Rectangle Calculator">
+    Length: <input length="Number"><br/>
+    Width: <input width="Number"><br/>
+</form>
+-->
     <div id="header">
       <h1> Hello, Welcome to my webpage,
         <script>
@@ -19,6 +25,25 @@
   <div id="profile-picture">
     <img src=images\profile-picture.jpg.jpg width=250px height=250px/>
   </div>
+                        <!--Rectangle Calculator-->
+  <br>
+    <div id= "calculate">
+          <form action="/index.html" method="POST">
+          <label for="length"> Length:
+          </label>
+          <input type="text" name="length" id="length"> <br>
+          <label for="width"> Width:
+          </label>
+          <input type="text" name="width" id="width"> <br>
+          <label for="area"> Total area of your rectangle:
+          <input type="Text" name="area" id="area"> <br>
+          </form>
+        <script>
+        calc()
+        </script>
+        <input type="button" onclick="calculate()" value="Rectangle Calculator">
+      </div>
+                        <!--Rectangle Calculator-->
   <div id="welcome-text">
     My name is Alvaro S. Esparza<br>
     Welcome to my webpage.</br>
@@ -34,11 +59,11 @@
         webmap_table()
       </script>
     </div>
-    <ol>
+    <!--<ol>
       <li>Urban planning</li>
       <li>Heat Island Effect</li>
       <li>Transportation and Housing</li>
-    </ol>
+    </ol>-->
   </div>
 </div>
 <div id="copyright">
