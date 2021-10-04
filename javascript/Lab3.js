@@ -22,11 +22,13 @@ function webmap_table()
   {
     document.write("<tr>");
     for (var column=0; column < webmaps[0].length; column++)
-    //if (row==0) {
-      //            row.style.fontcolor ('black');
-      //} else {
-        //          row.style.fontcolor ('blue');
-      //}
+    if (row<2) {
+      document.write("<td>"+ webmaps[row][column] + "</td>")
+      webmaps.fontColor = 'gray';
+    }
+//conditional statement writes the var, however it gives an extra
+//column of text mark as undefined and it does not transform the
+// font fontColor to gray whihc is what was meant to be done
       {
         document.write("<td>"+ webmaps[row][column] + "</td>");
       }
