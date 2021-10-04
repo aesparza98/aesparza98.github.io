@@ -22,9 +22,9 @@ function webmap_table()
   {
     document.write("<tr>");
     for (var column=0; column < webmaps[0].length; column++)
-    if (row<2) {
+    if (column==2) {
       document.write("<td>"+ webmaps[row][column] + "</td>")
-      webmaps.fontColor = 'gray';
+      document.style.backgroundColor('gray');
     }
 //conditional statement writes the var, however it gives an extra
 //column of text mark as undefined and it does not transform the
