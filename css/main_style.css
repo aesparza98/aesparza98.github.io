@@ -33,7 +33,7 @@ Lastly margin is defines the space around an HTML element in this case the spaci
   height: auto;
   border: 5px solid #b2abd2;
   border-radius: 25px;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 /*In this section of the code background color is set to white,

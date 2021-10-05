@@ -1,7 +1,6 @@
 // A prompt box is used to prompt users to input a value before entering a page
 //user_name = window.prompt("Please enter your name", "Type your name here");
 //document.write(user_name);
-
 function welcome()
 {
   let a = "Please enter your name.";
@@ -14,7 +13,6 @@ message = "<h1>Hello, welcome to my webpage," + user_name + "!</h1>"
 return message
 }
 
-
 function webmap_table()
 {
   document.write("<table width=90%>");
@@ -22,21 +20,16 @@ function webmap_table()
   {
     document.write("<tr>");
     for (var column=0; column < webmaps[0].length; column++)
-    if (column==2) {
-      document.write("<td>"+ webmaps[row][column] + "</td>")
-      document.style.backgroundColor('gray');
-    }
-//conditional statement writes the var, however it gives an extra
-//column of text mark as undefined and it does not transform the
-// font fontColor to gray whihc is what was meant to be done
-      {
-        document.write("<td>"+ webmaps[row][column] + "</td>");
+    if (column<3) {
+     document.write("<td style='color: blue;'>"+ webmaps[row][column] + "</td>")
+   }
+    else{
+         document.write("<td> "+ webmaps[row][column] + "</td>");
       }
    document.write("</tr>");
   }
   document.write("</table>");
 }
-
 
 var webmaps =
  [
