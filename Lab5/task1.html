@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Map</title>
+
+    <style type="text/css">
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 400px;
+        /*The height is 400 pixels */
+        width: 100%;
+        /*The width is the width of the web page*/
+      }
+    </style>
+    <script>
+      //Intialize and add the map
+      function initMap() {
+        const center = {lat: -25.363, lng: 131.044};
+        const zoom = 4;
+        //[START maps_interaction_cooperative_mapoptions]
+        new google.maps.Map(document.getElementById("map"), {
+          zoom,
+          center,
+          scrollwheel: false,
+          zoomControl: true
+        });
+        // [END maps_interaction_cooperative_mapoptions]
+}
+      // [END maps_interaction_cooperative]
+    </script>
+    </head>
+    <body>
+      <div id="map"</div>
+      <script>
+      function initMap() {
+    const myLatlng = {lat: -25.363, lng: 131.044};
+    const map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 4,
+      center: myLatlng,
+    });
+    const marker = new google.maps.Marker({
+      position: myLatlng,
+      map,
+      title: "Click to zoom",
+    });
+    map.addListener("center_changed",() => {
+      //3 seconds after the center of the map has changed, pan back to the
+      //marker.
+      window.setTimeout(() => {
+        map.panTo(marker.getPosition());
+      }, 3000);
+    });
+    marker.addListener("click", () => {
+      map.setZoom(8);
+      map.setCenter(marker.getPosition());
+    });
+  }
+    </script>
+
+    <!--Async script executes inmediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtBsL-KooQlCwtd5Y7oH_BB6Rb3A0XXj4&callback=initMap&libraries=&v=weekly"
+    ></script>
+    </body>
+  </html>
