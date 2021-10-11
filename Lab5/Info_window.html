@@ -1,0 +1,16 @@
+}
+
+new google.maps.
+
+let infoWindow = new google.maps.infoWindow({
+  content: "Use Ctrl + scroll to zoom the map",
+  position: center,
+});
+
+infoWindow.open(map);
+map.addListener("click", (mapMouseEvent) => {
+  infoWindow.close();
+  infoWindow = new google.maps.infoWindow({
+    position: mapMouseEvent.center,
+  });
+});
