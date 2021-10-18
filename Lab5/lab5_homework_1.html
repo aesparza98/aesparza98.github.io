@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lab5 Hw1 </title>
+    <script>
+    let line;
+    let map;
+
+    //Intialize and add the map
+           function initMap() {
+             map = new google.maps.Map(document.getElementById("map"), {
+               zoom: 2,
+               center: {lat: 0, lng: 0},
+             });
+
+             line = new google.maps.Polyline({
+             strokeColor: "#000000",
+             strokeOpacity: 1.0,
+             strokeWeight: 3,
+           });
+           line.setMap(map);
+           map.addListener("click", addLatLng);
+         }
+
+         function addLatLng(event){
+           var x = document.getElementById("DrawOption").value;
+           if (x=="polyline"){
+             const path = line.getPath();
+             path.push(event.latLng);
+             new google.maps.Marker({
+               position: event.latlng,
+               title: "#" + path.getLength(),
+               map: map,
+             });}
+           if (x=="polygon") {
+             var Close = false;
+             var polyg = new google.maps.Polyline({map: map, path: [], strokeOpacity: 1.0, strokeWeight: 2 });
+             google.maps.event.addListener(map, 'click', function ( clickEvent){
+               if(Close)
+               return;
+               var markerIndex = polyg.getPath().length;
+               var Open = markerIndex === 0;
+               var marker = new google.maps.Marker({ map: map, position: clickEvent.latLng})
+               if (Open) {
+                 google.maps.event.addListener(marker, 'click', function()  {
+                if (Close)
+                    return;
+              var path = polyg.getPath();
+              polyg.setMap(null);
+              polyg = new google.maps.Polygon({ map: map, path: path, strokeOpacity: 0.8, strokeWeight: 2 });
+              Close = true;
+            });
+           }
+           google.maps.event.addListener(marker, 'drag', function (dragEvent){
+             polyg.getPath().setAt(markerIndex, dragEvent.latLng);
+           });
+           polyg.getPath().push(clickEvent.latLng);
+         });
+       }}
+        </script>
+    </head>
+    <body onload="initMap()">
+      <div>
+      <label for="DrawOption">Choose a setting:</label>
+
+      <select name="DrawOption" id = "DrawOption">
+      <option value="">--Options--</option>
+      <option value="polyline"> Polyline </option>
+      <option value="polygon"> Polygon </option>
+      </select>
+      </div>
+      <div id="map" style="width: 1500px; height: 480px;"></div>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtBsL-KooQlCwtd5Y7oH_BB6Rb3A0XXj4&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
+    </body>
+</html>
