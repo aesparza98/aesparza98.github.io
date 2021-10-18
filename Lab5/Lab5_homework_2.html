@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Task 6</title>
+     <style type="text/css">
+      #map {
+        height: 400px;
+        width: 100%;
+      }
+    </style>
+    <script>
+    var geocoder;
+    var map;
+    function initialize() {
+      geocoder = new google.maps.Geocoder();
+      var latlng = new google.maps.LatLng(-34.397, 150.644);
+      var mapOptions = {
+        zoom: 2,
+        center: latlng
+      }
+      map = new google.maps.Map(document.getElementById('map')
+      , mapOptions);
+    }
+    function Address() {
+      var coords = [];
+      var address = document.getElementById('address').value;
+      for(var i = 0; i < address.length; i++) {
+        currAddress = address[i];
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode( { 'address' : address}, function (
+        results, status) {
+          if (status == 'OK') {
+            coords.push(results[0].geometry.location);
+            map.setCenter(results[0].geometry.location);
+            var marker = new google.maps.Marker({
+              map: map,
+              position: results[0].geometry.location
+            });
+            if(coords.length == address.length) {
+                if( typeof callback == 'function' ) {
+                    callback();
+                }
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+              }
+          }
+        });
+    }
+
+}
+    </script>
+    </head>
+    <body on load="initialize()">
+
+        <div id="map" style " width: 1500px; height: 480px; "></div>
+        <div>
+            <input id="address" type="textbox" placeholder="Write Name of a Place!" />
+            <input type="button" value="Geocode" onclick="Address()"/>
+        </div>
+
+        <!--Async script executes inmediately and must be after any DOM elements used in callback. -->
+        <script
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtBsL-KooQlCwtd5Y7oH_BB6Rb3A0XXj4&callback=initialize&libraries=&v=weekly"
+        ></script>
+        </body>
+      </html>
