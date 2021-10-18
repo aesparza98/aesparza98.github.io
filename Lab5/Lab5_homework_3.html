@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lab5 Hw1 </title>
+    <script>
+    let map;
+
+    //Intialize and add the map
+  function initMap() {
+             const TajMahal = { lat: 27.1751, lng: 78.0421 };
+             const image1 =  "https://img.icons8.com/ios-glyphs/15/000000/taj-mahal.png";
+             const markerTM = new google.maps.Marker({
+               position: TajMahal,
+               map: map,
+               icon: image1,
+                });
+              const GreatWall = { lat: 40.4319, lng: 116.5704 };
+              const image2 =  "https://img.icons8.com/ios-filled/15/000000/great-wall.png";
+              const markerGW = new google.maps.Marker({
+                  position: GreatWall,
+                  map: map,
+                  icon: image2,
+                 });
+               const Petra = { lat: 30.3285, lng: 35.4444 };
+               const image3 = "https://img.icons8.com/external-vitaliy-gorbachev-fill-vitaly-gorbachev/15/000000/external-petra-wonder-of-the-world-vitaliy-gorbachev-fill-vitaly-gorbachev.png";
+               const markerP = new google.maps.Marker({
+                   position: Petra,
+                   map: map,
+                   icon: image3,
+                  });
+                const Christ = { lat: -22.9519, lng: -43.2105 };
+                const image4 = "https://img.icons8.com/ios-glyphs/15/000000/statue-of-christ-the-redeemer.png";
+                const markerCR = new google.maps.Marker({
+                    position: Christ,
+                    map: map,
+                    icon: image4,
+                   });
+                 const MachuPichu = { lat: -13.1631, lng: -72.5450 };
+                 const image5 = "https://img.icons8.com/external-vitaliy-gorbachev-fill-vitaly-gorbachev/15/000000/external-machu-picchu-wonder-of-the-world-vitaliy-gorbachev-fill-vitaly-gorbachev.png";
+                 const markerMP = new google.maps.Marker({
+                     position: MachuPichu,
+                     map: map,
+                     icon: image5,
+                    });
+                  const ChichenItza = { lat: 20.6830, lng: -88.5686 };
+                  const image6 = "https://img.icons8.com/ios/15/000000/chichen-itza.png";
+                  const markerCI = new google.maps.Marker({
+                      position: ChichenItza,
+                      map: map,
+                      icon: image6,
+                       });
+                   const Colosseum = { lat: 41.8902, lng: 12.4922 };
+                   const image7 = "https://img.icons8.com/ios-filled/15/000000/coliseum.png";
+                   const markerC = new google.maps.Marker({
+                       position: Colosseum,
+                       map: map,
+                      icon: image7,
+                            });
+             map = new google.maps.Map(document.getElementById("map"), {
+               zoom: 1,
+               center: {lat: 0, lng: 0},
+             });
+
+  const contentTM =
+  '<div id="content">' +
+  '<div id="siteNotice">' +
+  "</div>" +
+  '<h1 id="firstHeading" class="firstHeading">Taj Mahal</h1>' +
+  '<div id="bodyContent">' +
+  "<p><b>Taj Mahal</b>, An immense mausoleum of white marble," +
+  "built in Agra between 1631 and 1648 by order of the Mughal emperor Shah Jahan"+
+   "in memory of his favorite wife, the Taj Mahal is the jewel of Muslim art in"+
+   "India and one of the universally admired masterpieces of the world's heritage.</p>" +
+  '<p>Attribution: TajMahal, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' +
+  "https://www.wonders-of-the-world.net/Taj-Mahal/Description-of-the-Taj-Mahal.php</a> " +
+  '<img src="https://en.wikipedia.org/wiki/Taj_Mahal#/media/File:Taj_Mahal_in_India_-_Kristian_Bertel.jpg">'+
+  "</p>" +
+  "</div>" +
+  "</div>";
+
+  const contentGW =
+  '<div id="content">' +
+  '<div id="siteNotice">' +
+  "</div>" +
+  '<h1 id="firstHeading" class="firstHeading">Great Wall</h1>' +
+  '<div id="bodyContent">' +
+  "<p><b>Great Wall</b>, The Great Wall of China is an ancient structure in China."+
+  "It was finished in 1878 and it was meant to protect the north of the empire"+
+  "of China from enemy attacks. It is the longest structure humans have ever built."+
+  "It is about 21,196 kilometers long, 9.1 meters (30 feet) wide and 15 meters high.</p>" +
+  '<p>Attribution: GreatWall, <a href="https://en.wikipedia.org/wiki/Great_Wall_of_China">' +
+  "https://en.wikipedia.org/wiki/Great_Wall_of_China</a> " +
+  '<img src="https://en.wikipedia.org/wiki/Great_Wall_of_China#/media/File:The_Great_Wall_of_China_at_Jinshanling-edit.jpg">'+
+  "</p>" +
+  "</div>" +
+  "</div>";
+
+  const contentP =
+  '<div id="content">' +
+  '<div id="siteNotice">' +
+  "</div>" +
+  '<h1 id="firstHeading" class="firstHeading">Petra</h1>' +
+  '<div id="bodyContent">' +
+  "<p><b>Petra</b>, Petra is half-built, half-carved into the rock, and is surrounded by mountains"+
+  "riddled with passages and gorges. It is one of the world's most famous"+
+  "archaeological sites, where ancient Eastern traditions blend with Hellenistic"+
+  "architecture.</p>" +
+  '<p>Attribution: Petra <a href="https://en.wikipedia.org/wiki/Petra">' +
+  "https://en.wikipedia.org/wiki/Petra</a> " +
+  '<img src="https://en.wikipedia.org/wiki/Petra#/media/File:View_of_Petra.jpg">'+
+  "</p>" +
+  "</div>" +
+  "</div>";
+
+  const contentCR =
+  '<div id="content">' +
+  '<div id="siteNotice">' +
+  "</div>" +
+  '<h1 id="firstHeading" class="firstHeading">Christ the Redeemer</h1>' +
+  '<div id="bodyContent">' +
+  "<p><b>Christ the Redeemer</b>, Christ the Redeemer is the largest art deco statue in the world."+
+  "It is 98 feet tall (not including the 26 foot pedestal), and the arms"+
+  "stretch to 92 feet wide. The statue weighs approximately 635 tones."+
+  "Christ the Redeemer is the 5th largest statue of Jesus.</p>" +
+  '<p>Attribution: Christ the Redeemer <a href="https://en.wikipedia.org/wiki/Christ_the_Redeemer_(statue)">' +
+  "https://en.wikipedia.org/wiki/Christ_the_Redeemer_(statue)</a> " +
+  '<img src="https://en.wikipedia.org/wiki/Christ_the_Redeemer_(statue)#/media/File:Aerial_view_of_the_Statue_of_Christ_the_Redeemer.jpg">'+
+  "</p>" +
+  "</div>" +
+  "</div>";
+
+  const contentMP =
+  '<div id="content">' +
+  '<div id="siteNotice">' +
+  "</div>" +
+  '<h1 id="firstHeading" class="firstHeading">Machu Picchu</h1>' +
+  '<div id="bodyContent">' +
+  "<p><b>Machu Picchu</b>, Machu Picchu is a 15th-century Inca site located on a ridge between the Huayna"+
+  "Picchu and Machu Picchu mountains in Peru. It sits 7,970 feet (2,430 meters)"+
+  "above sea level on the eastern slope of the Andes and overlooks the Urubamba"+
+  "River hundreds of feet below.</p>" +
+  '<p>Attribution: Machu Picchu <a href="https://en.wikipedia.org/wiki/Machu_Picchu">' +
+  "https://en.wikipedia.org/wiki/Machu_Picchu</a> " +
+  '<img src="https://en.wikipedia.org/wiki/Machu_Picchu#/media/File:Machu_Picchu,_Peru.jpg">'+
+  "</p>" +
+  "</div>" +
+  "</div>";
+
+  const contentCI =
+  '<div id="content">' +
+  '<div id="siteNotice">' +
+  "</div>" +
+  '<h1 id="firstHeading" class="firstHeading">Chichen Itza</h1>' +
+  '<div id="bodyContent">' +
+  "<p><b>Chichen Itza</b>,Chichen Itza was a large pre-Columbian city built by the Maya people of the"+
+  "Terminal Classic period. The site exhibits a multitude of architectural"+
+  "styles, reminiscent of styles seen in central Mexico and of the Puuc and Chenes"+
+  "styles of the Northern Maya lowlands.</p>" +
+  '<p>Attribution: Chichen Itza <a href="https://en.wikipedia.org/wiki/Chichen_Itza">' +
+  "https://en.wikipedia.org/wiki/Chichen_Itza</a> " +
+  '<img src="https://en.wikipedia.org/wiki/Chichen_Itza#/media/File:Chichen_Itza_3.jpg">'+
+  "</p>" +
+  "</div>" +
+  "</div>";
+
+  const contentC =
+  '<div id="content">' +
+  '<div id="siteNotice">' +
+  "</div>" +
+  '<h1 id="firstHeading" class="firstHeading">The Colosseum</h1>' +
+  '<div id="bodyContent">' +
+  "<p><b>The Colosseum</b>, The Colosseum is an amphitheater built in Rome under the Flavian emperors"+
+  "of the Roman Empire. It is also called the Flavian Amphitheatre. It is an"+
+  "elliptical structure made of stone, concrete, and tuff, and it stands four"+
+  "stories tall at its highest point. The Colosseum was famously used for"+
+  "gladiatorial combat.</p>" +
+  '<p>Attribution: The Colosseum <a href="https://en.wikipedia.org/wiki/Colosseum">' +
+  "https://en.wikipedia.org/wiki/Colosseum</a> " +
+  '<img src="https://en.wikipedia.org/wiki/Colosseum#/media/File:Colosseo_2020.jpg">'+
+  "</p>" +
+  "</div>" +
+  "</div>";
+
+
+
+const infowindow1 = new google.maps.InfoWindow({
+  content: contentTM,
+});
+const infowindow2 = new google.maps.InfoWindow({
+  content: contentGW,
+});
+const infowindow3 = new google.maps.InfoWindow({
+  content: contentP,
+});
+const infowindow4 = new google.maps.InfoWindow({
+  content: contentCR,
+});
+const infowindow5 = new google.maps.InfoWindow({
+  content: contentMP,
+});
+const infowindow6 = new google.maps.InfoWindow({
+  content: contentCI,
+});
+const infowindow7 = new google.maps.InfoWindow({
+  content: contentC,
+});
+
+markerTM.setMap(map);
+markerGW.setMap(map);
+markerP.setMap(map);
+markerCR.setMap(map);
+markerMP.setMap(map);
+markerCI.setMap(map);
+markerC.setMap(map);
+
+markerTM.addListener("click", () => {
+  infowindow1.open({
+    anchor: markerTM,
+    map: map,
+    shouldFocus: false,
+  });
+});
+
+markerGW.addListener("click", () => {
+  infowindow2.open({
+    anchor: markerGW,
+    map: map,
+    shouldFocus: false,
+  });
+});
+
+markerP.addListener("click", () => {
+  infowindow3.open({
+    anchor: markerP,
+    map: map,
+    shouldFocus: false,
+  });
+});
+
+markerCR.addListener("click", () => {
+  infowindow4.open({
+    anchor: markerCR,
+    map: map,
+    shouldFocus: false,
+  });
+});
+
+markerMP.addListener("click", () => {
+  infowindow5.open({
+    anchor: markerMP,
+    map: map,
+    shouldFocus: false,
+  });
+});
+
+markerCI.addListener("click", () => {
+  infowindow6.open({
+    anchor: markerCI,
+    map: map,
+    shouldFocus: false,
+  });
+});
+
+markerC.addListener("click", () => {
+  infowindow7.open({
+    anchor: markerC,
+    map: map,
+    shouldFocus: false,
+  });
+});
+
+
+}
+
+
+</script>
+</head>
+
+  <body>
+    <div id="TajMahal"></div>
+    <div id="map" style="width: 1500px; height: 480px;"></div>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtBsL-KooQlCwtd5Y7oH_BB6Rb3A0XXj4&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
+  </body>
+</html>
