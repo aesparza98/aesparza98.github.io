@@ -2,10 +2,23 @@
 <html>
 <head>
   <title>Alvaro Esparza</title>
+  <script src="javascript/secret_keys.js"></script>
   <!--All styling for this HTML document are contain in this external css
   file-->
   <link rel="stylesheet" type="text/css" href="css/main_style.css">
   <script src="javascript/Lab3.js"></script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+  crossorigin="" />
+  <link rel="stylesheet" type="text/css" href="css/map_style.css">
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+  integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+  crossorigin="">
+  </script>
 </head>
 <body>
   <div id="body-container">
@@ -38,9 +51,6 @@
           <label for="area"> Total area:
           <input type="Text" name="area" id="area"> <br>
           </form>
-        <script>
-        calc()
-        </script>
         <input type="button" onclick="calculate()" value="Rectangle Calculator">
       </div>
                         <!--Rectangle Calculator-->
@@ -51,6 +61,11 @@
     <a href="https://www.clarku.edu/academics/graduate/programs/masters/community-development-and-planning/">
      IDCE Department </a> at
     <a href="https://www.clarku.edu/">Clark University.</a>
+  </div>
+  <br>
+  <br>
+  <div>
+    <a href="https://aesparza98.github.io/ChoroplethMapinLeadflet.html">States Map</a>
   </div>
   <div id="research-interests">
     <h3>Research Interest</h3>
@@ -66,7 +81,51 @@
     </ol>-->
   </div>
 </div>
+<h3>My First Webmap</h3>
+<div id="mapid" style="width: 600px; height: 400px; margin: auto;">
+  <script>
+    var mymap = L.map('mapid').setView([51.505, -0.09], 13);
+
+      L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',{
+        maxZoom: 18,
+        id: 'mapbox/streets-v11',
+        accessToken: mapbox_access_token,
+      }).addTo(mymap);
+//Add a marker
+      var marker = L.marker([51.5, -0.09]).addTo(mymap);
+//Add a circle
+      var circle = L.circle([51.508, -0.11], {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5,
+        radius: 500
+      }).addTo(mymap);
+//Add a polygon
+      var polygon = L.polygon([
+        [51.509, -0.08],
+        [51.503, -0.06],
+        [51.51, -0.047]
+      ]).addTo(mymap);
+//Add Popuo windows for each object:
+      marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+      circle.bindPopup("I am a circle.");
+      polygon.bindPopup("I am a polygon.");
+
+      marker.on('click', function(e){
+        mymap.setView(e.latlng, 14);
+      });
+
+      circle.on('click', function(e){
+        mymap.setView(e.latlng, 13);
+      });
+
+      polygon.on('click', function(e) {
+        mymap.setView(e.latlng, 13);
+      });
+    </script>
+  </div>
 <div id="copyright">
+
  <script>
  // Here today is being declared as the variable where the data object is
  //current date and time
