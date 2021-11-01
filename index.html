@@ -12,6 +12,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
   integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
   crossorigin="" />
@@ -20,10 +21,15 @@
   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
   crossorigin="">
   </script>
+  <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/opencagedata/leaflet-opencage-search@d4cbd36122efc8d17152b4177ed0e12165305441/dist/css/L.Control.OpenCageData.Search.min.css" />
-  <script src="https://cdn.jsdelivr.net/gh/opencagedata/leaflet-opencage-search@d4cbd36122efc8d17152b4177ed0e12165305441/dist/js/L.Control.OpenCageSearch.min.js">
-  </script>
-  <script src="javascript/map.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/opencagedata/leaflet-opencage-search@d4cbd36122efc8d17152b4177ed0e12165305441/dist/js/L.Control.OpenCageSearch.min.js"></script>
+  <script src="http://cdn.leafletjs.com/leaflet-0.5.1/leaflet.js"></script>
+
+  <script src="javascript/bounce.js"></script>
+  <script src="javascript/Full_Screen.js"></script>
+  <script src="javascript/mouse_position.js"></script>
+  <script src="javascript/Graticule.js"></script>
 </head>
 <body>
   <div id="body-container">
@@ -88,24 +94,24 @@
 </div>
 <h3>Geocoding Map</h3>
 <div id="mapid" style="width: 600px; height: 400px; margin: auto;">
-  <div id="map.js">
+<div id="icon1">
   <script>
     var mymap = L.map('mapid');
 
-      L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}',{
+      L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}',{
         maxZoom: 18,
-        id: 'mapbox.mapbox-traffic-v1',
+        id: 'mapbox/satellite-streets-v11',
         accessToken: mapbox_access_token,
       }).addTo(mymap);
 
 
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      }).addTo(mymap);
-
-
-      L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-      }).addTo(mymap);
+      // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      // }).addTo(mymap);
+      //
+      //
+      // L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+      // }).addTo(mymap);
 
 /*
       var Stamen_Watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
@@ -155,12 +161,39 @@
         mymap.setView(e.latlng, 13);
       });
 */
-var options = {
-  key:  geocoder_api_key ,
-  limit: 10
-};
+L.graticule().addTo(mymap);
 
-var control = L.Control.openCageSearch(options).addTo(mymap);
+   // Specify divisions every 10 degrees
+   L.graticule({ interval: 15 }).addTo(mymap);
+
+   // Specify bold red lines instead of thin grey lines
+   L.graticule({
+       style: {
+           color: 'black',
+           weight: 0.8
+       }
+   }).addTo(mymap);
+
+L.control.mousePosition().addTo(mymap);
+
+// Create a new map with a fullscreen button:
+// var map = new L.map('map', {
+//     fullscreenControl: true,
+//     // OR
+//     fullscreenControl: {
+//         pseudoFullscreen: false // if true, fullscreen to page width and height
+//     }
+// }).addTo(map);
+
+// or, add to an existing map:
+//map.addControl(new L.Control.Fullscreen());
+
+// var options = {
+//   key:  geocoder_api_key ,
+//   limit: 10
+// };
+//
+// var control = L.Control.openCageSearch(options).addTo(mymap);
 
 
       var ZoomViewer = L.Control.extend({
@@ -182,19 +215,95 @@ var control = L.Control.openCageSearch(options).addTo(mymap);
 
       mymap.setView([0,0],1);
 
+      var icon1 = L.icon({
+         iconUrl: 'https://img.icons8.com/ios-glyphs/15/000000/taj-mahal.png',
+         iconSize: [30,30]
+       });
+      var marker1 = L.marker([27.17, 78.04],
+         {icon: icon1}).addTo(mymap);{}
+       marker1.bindPopup("<b>Taj Mahal</b><br> <p> The Taj Mahal is an ivory-white marble mausoleum.</p> <img src='https://cdn.britannica.com/86/170586-050-AB7FEFAE/Taj-Mahal-Agra-India.jpg'/>").openPopup();
+       marker1.on("click", function(e) {
+       mymap.setView(e.latlng, 5);
+       marker1.bounce({duration: 500, height: 100}, function(){console.log("done")});
+      });
+
+
+      var icon2 = L.icon({
+        iconUrl: 'https://img.icons8.com/ios-filled/15/000000/great-wall.png',
+        iconSize: [30,30]
+      });
+      var marker2 = L.marker([40.33, 116.47], {icon: icon2}).addTo(mymap);{}
+      marker2.bindPopup("<b>Great Wall</b><br> <p>The Great Wall of China is an ancient structure in China, finished in 1878 and it was meant to protect the north of the empire.</p> <img src='https://en.wikipedia.org/wiki/Great_Wall_of_China#/media/File:The_Great_Wall_of_China_at_Jinshanling-edit.jpg'/>").openPopup();
+      marker2.on("click", function(e) {
+      mymap.setView(e.latlng, 5);
+      marker2.bounce({duration: 500, height: 100}, function(){console.log("done")});
+     });
+
+     var icon3 = L.icon({
+       iconUrl: 'https://img.icons8.com/external-vitaliy-gorbachev-fill-vitaly-gorbachev/15/000000/external-petra-wonder-of-the-world-vitaliy-gorbachev-fill-vitaly-gorbachev.png',
+       iconSize: [30,30]
+     });
+     var marker3 = L.marker([30.32, 35.44], {icon: icon3}).addTo(mymap);{}
+     marker3.bindPopup("<b>Petra</b><br> <p>Petra is a historic and archaeological city in southern Jordan.</p> <img src='https://en.wikipedia.org/wiki/Petra#/media/File:View_of_Petra.jpg'/>").openPopup();
+     marker3.on("click", function(e) {
+     mymap.setView(e.latlng, 5);
+     });
+
+     var icon4 = L.icon({
+       iconUrl: 'https://img.icons8.com/ios-glyphs/15/000000/statue-of-christ-the-redeemer.png',
+       iconSize: [30,30]
+     });
+     var marker4 = L.marker([-22.95, -43.21], {icon: icon4}).addTo(mymap);{}
+     marker4.bindPopup("<b>Christ The Redeemer</b><br> <p>Christ the Redeemer is an Art Deco statue of Jesus Christ in Rio de Janeiro. </p> <img src='https://en.wikipedia.org/wiki/Christ_the_Redeemer_(statue)#/media/File:Aerial_view_of_the_Statue_of_Christ_the_Redeemer.jpg'/>").openPopup();
+     marker4.on("click", function(e) {
+     mymap.setView(e.latlng, 5);
+     marker4.bounce({duration: 500, height: 100}, function(){console.log("done")});
+     });
+
+     var icon5 = L.icon({
+       iconUrl: 'https://img.icons8.com/external-vitaliy-gorbachev-fill-vitaly-gorbachev/15/000000/external-machu-picchu-wonder-of-the-world-vitaliy-gorbachev-fill-vitaly-gorbachev.png',
+       iconSize: [30,30]
+     });
+     var marker5 = L.marker([-13.16, -72.54], {icon: icon5}).addTo(mymap);{}
+     marker5.bindPopup("<b>Machu Picchu</b><br> <p>Machu Picchu is a 15th-century Inca citadel located in the Eastern Cordillera of southern Peru on a 2,430-meter mountain ridge. </p> <img src='https://en.wikipedia.org/wiki/Machu_Picchu#/media/File:Machu_Picchu,_Peru.jpg'/>").openPopup();
+     marker5.on("click", function(e) {
+     mymap.setView(e.latlng, 5);
+     marker5.bounce({duration: 500, height: 100}, function(){console.log("done")});
+     });
+
+     var icon6 = L.icon({
+       iconUrl: 'https://img.icons8.com/ios/15/000000/chichen-itza.png',
+       iconSize: [30,30]
+     });
+     var marker6 = L.marker([20.68, -88.56], {icon: icon6}).addTo(mymap);{}
+     marker6.bindPopup("<b>Chichen Itza</b><br> <p>Chichen Itza was a large pre-Columbian city built by the Maya people of the Terminal Classic period. </p> <img src='https://en.wikipedia.org/wiki/Chichen_Itza#/media/File:Chichen_Itza_3.jpg'/>").openPopup();
+     marker6.on("click", function(e) {
+     mymap.setView(e.latlng, 5);
+     marker6.bounce({duration: 500, height: 100}, function(){console.log("done")});
+     });
+
+     var icon7 = L.icon({
+       iconUrl: 'https://img.icons8.com/ios-filled/15/000000/coliseum.png',
+       iconSize: [30,30]
+     });
+     var marker7 = L.marker([41.89, 12.49], {icon: icon7}).addTo(mymap);{}
+     marker7.bindPopup("<b>Colosseum</b><br> <p>The Colosseum is an oval amphitheatre in the content of the city of Rome, Italy, just east of the Roman Forum. It is the largest ancient amphitheatre ever built. </p> <img src='https://en.wikipedia.org/wiki/Colosseum#/media/File:Colosseo_2020.jpg'/>").openPopup();
+     marker7.on("click", function(e) {
+     mymap.setView(e.latlng, 5);
+     marker7.bounce({duration: 500, height: 100}, function(){console.log("done")});
+     });
+//Add pics, answer questions, add things Ethan sent.
+
     </script>
   </div>
 <div id="copyright">
 
  <script>
- // Here today is being declared as the variable where the data object is
- //current date and time
+
  var today = new Date();
- // Year is basing the year on the date previously assiged in today, full Year
- //is also produces a 4 digit absolute value
+
  var year = today.getFullYear();
- //Using the result from var = year, here two pieces are ordered and added by the
- //addition operator incudling the text and symbol + the variable.
+
  document.writeln("Copyright &copy; " + year);
  </script>
 </div>
