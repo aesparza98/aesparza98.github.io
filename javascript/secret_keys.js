@@ -1,1 +1,2 @@
 mapbox_access_token = 'pk.eyJ1IjoiYWx2YXJvZXNwOTgiLCJhIjoiY2t2Mmg3MDJyM2l6bDJucTl2OTRhbmZ2biJ9.7y3xXKkn38-Vfit4xJWBvA'
+ geocoder_api_key = '2d6d89a4251c466e9a2e0f124c5f7ec5'
