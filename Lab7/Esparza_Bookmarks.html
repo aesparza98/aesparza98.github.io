@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
+    <title>Bookmarks widget</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.21/esri/themes/light/main.css" />
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+    <script src="https://js.arcgis.com/4.21/"></script>
+    <script>
+      require([
+        "esri/WebMap",
+        "esri/views/MapView",
+        "esri/widgets/Bookmarks",
+        "esri/widgets/Expand"
+      ], (
+        WebMap, MapView, Bookmarks, Expand
+      ) => {
+    //Added an extra map ID to add national parks but visualize in vector format
+        const webmap = new WebMap({
+          portalItem: {
+            // autocasts as new PortalItem()
+            id: "000e8d0ba9744468a77335d91e25b688"
+            //extra id "6bbf4a85da72452d90777309bcba3dcb"
+          }
+        });
+//Updated the longituted and latituded of the starting point of the web map
+        const view = new MapView({
+          container: "viewDiv",
+          map: webmap,
+          center: [-97.081031, 37.6401],
+          zoom: 3
+        });
+
+//Updated bookkmark enabling form to edit bookmars
+        const bookmarks = new Bookmarks({
+          view: view,
+          // allows bookmarks to be added, edited, or deleted
+          editingEnabled: false
+        });
+
+        const bkExpand = new Expand({
+          view: view,
+          content: bookmarks,
+          expanded: true
+        })
+
+        // Change location of the widget within the screen
+        view.ui.add(bkExpand, "bottom-left");
+
+        // bonus - how many bookmarks in the webmap?
+        webmap.when(() => {
+          if (webmap.bookmarks && webmap.bookmarks.length) {
+            console.log("Bookmarks: ", webmap.bookmarks.length);
+          } else {
+            console.log("No bookmarks, sorry");
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+</html>
