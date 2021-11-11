@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
+    <title>Home button | Sample | ArcGIS API for JavaScript 4.21</title>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.21/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.21/"></script>
+
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+
+    <script>
+      require(["esri/Map", "esri/views/SceneView", "esri/widgets/Home", "esri/views/MapView"],
+      (Map, SceneView, Home, MapView) => {
+        const map = new Map({
+          basemap: "topo-vector",
+          ground: "world-elevation"
+        });
+        //Changed the view of the scene, base and ground map, changed the start location and the zoom
+        //level when clicked in the home buttom
+        const view = new MapView({
+          container: "viewDiv",
+          map: map,
+          center: [-79.2113, 4.0079],
+          zoom: 5
+        });
+
+        const homeBtn = new Home({
+          view: view
+        });
+
+        // Changed location of the widget
+        view.ui.add(homeBtn, "top-right");
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+</html>
