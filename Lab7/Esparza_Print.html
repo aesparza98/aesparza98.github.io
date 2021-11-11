@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
+    <title>Print widget | Sample | ArcGIS API for JavaScript 4.21</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.21/esri/themes/dark/main.css" />
+
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+      }
+    </style>
+
+    <script src="https://js.arcgis.com/4.21/"></script>
+    <script>
+      require([
+        "esri/views/MapView",
+        "esri/widgets/Print",
+        "esri/WebMap",
+        "esri/widgets/Expand"], (MapView, Print, WebMap, Expand) => {
+        const webmap = new WebMap({
+          portalItem: {
+            // Changed the id base map, /*Updated the theme of argis in line 6*/
+            id: "000e8d0ba9744468a77335d91e25b688"
+          }
+        });
+
+        const view = new MapView({
+          container: "viewDiv",
+          map: webmap
+        });
+
+        view.when(() => {
+          const print = new Print({
+            view: view,
+            // specify your own print service
+            printServiceUrl:
+              "https://utility.arcgisonline.com/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
+          });
+          //Added an expand constructor to the widget, therefore user can see
+          //full screen before deciding what to print
+          const printExpand = new Expand({
+            view: view,
+            content: print,
+            expanded: true
+          })
+          view.ui.add(printExpand, "bottom-left");
+        });
+      });
+    </script>
+  </head>
+
+  <body class="dojo">
+    <div id="viewDiv"></div>
+  </body>
+</html>
